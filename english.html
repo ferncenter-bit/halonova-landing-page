@@ -151,8 +151,10 @@
         setText("footer .footer-top p", text.footer[0]); document.querySelectorAll("footer .footer-links a").forEach((element, index) => { element.textContent = text.footer[index + 1]; }); setText("footer .footer-links button", text.footer[4]);
         setText("#contact-modal-title", text.form[0]); [1,2,3,4,5,6].forEach((index) => setFormLabel(index - 1, text.form[index])); setText(".form-note", text.form[7]); setText(".modal-cancel", text.form[8]); setText(".modal-actions .button", text.form[9]);
         const languageButton = document.querySelector("[data-language-switch]");
-        languageButton.textContent = language === "th" ? "EN" : "TH";
-        languageButton.setAttribute("aria-label", language === "th" ? "Switch to English" : "เปลี่ยนภาษาเป็นไทย");
+        if (languageButton) {
+          languageButton.textContent = language === "th" ? "EN" : "TH";
+          languageButton.setAttribute("aria-label", language === "th" ? "Switch to English" : "เปลี่ยนภาษาเป็นไทย");
+        }
         languageStorage?.setItem("halonova-language", language);
       };
       window.toggleLanguage = () => applyLanguage(currentLanguage === "th" ? "en" : "th");
