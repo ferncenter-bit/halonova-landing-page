@@ -55,8 +55,8 @@
       .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .form-field { display: grid; gap: 6px; font-size: .9rem; font-weight: 700; }
       .form-field.full { grid-column: 1 / -1; }
-      .form-field input { width: 100%; padding: 12px 13px; color: var(--ink); border: 1px solid #c7d5d9; border-radius: 8px; background: #fbfdfd; font: inherit; }
-      .form-field input:focus { outline: 3px solid rgba(119, 212, 226, .35); border-color: #329caf; }
+      .form-field input, .form-field select { width: 100%; padding: 12px 13px; color: var(--ink); border: 1px solid #c7d5d9; border-radius: 8px; background: #fbfdfd; font: inherit; }
+      .form-field select { cursor: pointer; } .form-field input:focus, .form-field select:focus { outline: 3px solid rgba(119, 212, 226, .35); border-color: #329caf; }
       .form-note { margin: 18px 0; color: var(--muted); font-size: .8rem; }
       .modal-actions { display: flex; justify-content: flex-end; gap: 11px; }
       .modal-cancel { padding: 12px 18px; color: var(--navy); border: 1px solid var(--line); border-radius: 99px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
@@ -88,9 +88,11 @@
           <label class="form-field">ชื่อ<input name="firstName" autocomplete="given-name" required /></label>
           <label class="form-field">นามสกุล<input name="lastName" autocomplete="family-name" required /></label>
           <label class="form-field full">ชื่อบริษัท<input name="company" autocomplete="organization" required /></label>
+          <label class="form-field full">ประเภทธุรกิจ<select name="businessType" required><option value="" selected disabled>เลือกประเภทธุรกิจ</option><option>โรงแรม / ที่พัก</option><option>สปา / เวลเนส</option><option>ร้านอาหาร / คาเฟ่</option><option>แหล่งท่องเที่ยว</option><option>คลินิกทันตกรรม</option><option>อื่น ๆ</option></select></label>
           <label class="form-field">ตำแหน่ง<input name="position" autocomplete="organization-title" required /></label>
           <label class="form-field">เบอร์ติดต่อ<input name="phone" type="tel" autocomplete="tel" required /></label>
           <label class="form-field full">อีเมล<input name="email" type="email" autocomplete="email" required /></label>
+          <label class="form-field full">ความสนใจ<select name="interest" required><option value="" selected disabled>เลือกความสนใจ</option><option>ต้องการข้อมูลเพิ่มเติม</option><option>ต้องการทดลอง Demo</option></select></label>
         </div>
         <p class="form-note">เมื่อกดส่ง ระบบจะเปิดอีเมลเพื่อส่งข้อมูลถึงทีม HaloNova โดยตรง</p>
         <div class="modal-actions"><button class="modal-cancel" type="button" data-contact-close>ยกเลิก</button><button class="button button-primary" type="submit">ส่งข้อมูล</button></div>
@@ -119,7 +121,7 @@
           company: ["HaloNova โดย Vitality Technology", "Halonova แบรนด์ภายใต้ VITALITY TECHNOLOGY ช่วยให้ธุรกิจบริการสื่อสารกับลูกค้าจากทั่วโลกได้ชัดเจนผ่านแพลตฟอร์มแปลภาษา ออกแบบมาเพื่อโรงแรม สปา ร้านอาหาร แหล่งท่องเที่ยว ธุรกิจเวลเนส และคลินิกทันตกรรม เพื่อยกระดับการบริการและสร้างประสบการณ์ที่ดีขึ้นในทุกภาษา", "สแกนเพื่อเพิ่ม LINE"],
           cta: ["พร้อมเปลี่ยนข้อมูล ให้กลายเป็นโอกาสของโรงแรมคุณหรือยัง?", "นัดหมายเพื่อพูดคุยกับทีม HaloNova และค้นหาแนวทางที่เหมาะกับธุรกิจของคุณ", "ติดต่อทีม HaloNova"],
           footer: ["Halonova โดย VITALITY TECHNOLOGY ช่วยให้ธุรกิจบริการสื่อสารกับลูกค้าทั่วโลกได้อย่างชัดเจน", "แพลตฟอร์ม", "ทำไมต้อง HaloNova", "ข้อมูลเชิงลึก", "ติดต่อเรา"],
-          form: ["นัดพูดคุยกับทีม HaloNova", "ชื่อ", "นามสกุล", "ชื่อบริษัท", "ตำแหน่ง", "เบอร์ติดต่อ", "อีเมล", "เมื่อกดส่ง ระบบจะเปิดอีเมลเพื่อส่งข้อมูลถึงทีม HaloNova โดยตรง", "ยกเลิก", "ส่งข้อมูล"]
+          form: ["นัดพูดคุยกับทีม HaloNova", "ชื่อ", "นามสกุล", "ชื่อบริษัท", "ประเภทธุรกิจ", "ตำแหน่ง", "เบอร์ติดต่อ", "อีเมล", "ความสนใจ", "เมื่อกดส่ง ระบบจะเปิดอีเมลเพื่อส่งข้อมูลถึงทีม HaloNova โดยตรง", "ยกเลิก", "ส่งข้อมูล"]
         },
         en: {
           title: "HaloNova | AI Language Translation for Service Businesses",
@@ -133,7 +135,7 @@
           company: ["Halonova by Vitality Technology", "Halonova, a brand of VITALITY TECHNOLOGY, helps service businesses communicate clearly with customers from around the world. Our language translation platform is designed for hotels, spas, restaurants, tourist attractions, wellness businesses, and dental clinics. It makes everyday communication easier for staff and customers, improves service quality, and helps businesses create better experiences. With Halonova, every customer can feel understood, welcomed, and cared for in their own language, wherever they are and whenever they need support.", "Scan to add LINE"],
           cta: ["Ready to turn information into opportunity for your hotel?", "Book a conversation with the HaloNova team and find the approach that fits your business.", "Contact the HaloNova team"],
           footer: ["Halonova by VITALITY TECHNOLOGY helps service businesses communicate clearly with customers around the world.", "Platform", "Why HaloNova", "Insights", "Contact us"],
-          form: ["Book a conversation with HaloNova", "First name", "Last name", "Company", "Job title", "Phone number", "Email", "When you submit, your email app will open with your details addressed to the HaloNova team.", "Cancel", "Send details"]
+          form: ["Book a conversation with HaloNova", "First name", "Last name", "Company", "Business type", "Job title", "Phone number", "Email", "Interest", "When you submit, your email app will open with your details addressed to the HaloNova team.", "Cancel", "Send details"]
         }
       };
       const applyLanguage = (language) => {
@@ -151,7 +153,7 @@
         setText("#about h2", text.company[0]); setText("#about .company-copy p", text.company[1]); setText("#about .qr-contact span", text.company[2]);
         setText("#contact .cta-box h2", text.cta[0]); setText("#contact .cta-box p", text.cta[1]); setText("#contact .cta-box .button", text.cta[2]);
         setText("footer .footer-top p", text.footer[0]); document.querySelectorAll("footer .footer-links a").forEach((element, index) => { element.textContent = text.footer[index + 1]; }); setText("footer .footer-links button", text.footer[4]);
-        setText("#contact-modal-title", text.form[0]); [1,2,3,4,5,6].forEach((index) => setFormLabel(index - 1, text.form[index])); setText(".form-note", text.form[7]); setText(".modal-cancel", text.form[8]); setText(".modal-actions .button", text.form[9]);
+        setText("#contact-modal-title", text.form[0]); [1,2,3,4,5,6,7,8].forEach((index) => setFormLabel(index - 1, text.form[index])); setText(".form-note", text.form[9]); setText(".modal-cancel", text.form[10]); setText(".modal-actions .button", text.form[11]);
         const languageButton = document.querySelector("[data-language-switch]");
         languageButton.textContent = language === "th" ? "EN" : "TH";
         languageButton.setAttribute("aria-label", language === "th" ? "Switch to English" : "เปลี่ยนภาษาเป็นไทย");
@@ -172,9 +174,11 @@
         const body = [
           (currentLanguage === "en" ? "Name: " : "ชื่อ-นามสกุล: ") + data.get("firstName") + " " + data.get("lastName"),
           (currentLanguage === "en" ? "Company: " : "ชื่อบริษัท: ") + data.get("company"),
+          (currentLanguage === "en" ? "Business type: " : "ประเภทธุรกิจ: ") + data.get("businessType"),
           (currentLanguage === "en" ? "Position: " : "ตำแหน่ง: ") + data.get("position"),
           (currentLanguage === "en" ? "Phone: " : "เบอร์ติดต่อ: ") + data.get("phone"),
-          (currentLanguage === "en" ? "Email: " : "อีเมล: ") + data.get("email")
+          (currentLanguage === "en" ? "Email: " : "อีเมล: ") + data.get("email"),
+          (currentLanguage === "en" ? "Interest: " : "ความสนใจ: ") + data.get("interest")
         ].join("\n");
         window.location.href = "mailto:halonova.marketing@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       });
